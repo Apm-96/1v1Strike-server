@@ -1,0 +1,20 @@
+services:
+  xash3d:
+    image: yohimik/cs-web-server:latest
+    build:
+      context: ../../
+      dockerfile: ./docker/cs-web-server/Dockerfile
+      tags:
+        - yohimik/cs-web-server:latest
+    restart: always
+    platform: linux/386
+    environment:
+      PORT: 27015
+      IP: 192.168.1.115
+      DISCORD_URL: ${DISCORD_URL}
+    volumes:
+      - "./valve.zip:/xashds/public/valve.zip"
+    ports:
+      - "27016:27016"
+      - "27015:27015"
+      - "27015:27015/udp"
