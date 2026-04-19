@@ -1,4 +1,6 @@
-# Counter-Strike 1.6 Web Server Docker
+Fork form https://github.com/yohimik/webxash3d-fwgs, some instructions below doesn't match with this repository (Work in progress)
+
+# 1v1 Strike Web Server Docker
 
 This repository provides a **plug-and-play Docker image** for running a fully functional **Counter-Strike 1.6** client
 and dedicated server via the web. Powered by **Xash3D FWGS**, **WebRTC**, and modern web tooling, this setup allows for
@@ -11,20 +13,8 @@ in-browser gameplay and remote multiplayer support.
 - ✅ Web-based CS 1.6 client (HTML + TypeScript + Vite)
 - ✅ Dedicated CS 1.6 server (Go + CGO + Xash3D FWGS)
 - ✅ WebRTC support for browser-to-server networking
-- ✅ AMX Mod X & Metamod-R compatible
 - ✅ Dockerized & easy to deploy
 - ✅ i386 (32-bit) architecture support
-
----
-
-## 🎯 Looking for AMX Mod X Support?
-
-If you want **AMX Mod X and Metamod pre-installed and ready to use**, check out the [cs-web-server-metpamx](https://github.com/yohimik/webxash3d-fwgs/tree/main/docker/cs-web-server-metpamx) variant. It includes:
-- Pre-configured Metamod-P
-- AMX Mod X with all base modules
-- Ready for custom plugins out of the box
-
-This base version is compatible with AMX Mod X but requires manual installation.
 
 ---
 
@@ -159,7 +149,7 @@ To include custom plugins:
 * Mount a volume to `/xashds` inside the container
 * Or copy plugin files into the Docker build context
 
-## 🌐 Discord Community
+## 🌐 Discord Community (from forked)
 
 Need help? Want to share your project or ideas?
 **[Join our Discord community](https://discord.gg/cRNGjWfTDd)** to connect with others!
