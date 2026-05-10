@@ -171,4 +171,4 @@ USER xashds
 ENTRYPOINT ["./entrypoint.sh"]
 
 # Default start parameters
-CMD ["+map", "1v1_crete", "+maxplayers", "2", "+mp_winlimit", "10", "+log", "on"]
+#CMD ["+map", "1v1_crete", "+maxplayers", "2", "+mp_winlimit", "10", "+log", "on"]

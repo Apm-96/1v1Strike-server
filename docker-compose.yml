@@ -1,16 +1,17 @@
 services:
-  xash3d:
+  xash-queen:
     image: yohimik/cs-web-server:latest
     build:
       context: ../../
       dockerfile: ./docker/cs-web-server/Dockerfile
       tags:
         - yohimik/cs-web-server:latest
-    restart: always
+    restart: unless-stopped
     platform: linux/386
+    command: ["+map", "1v1_queen", "+maxplayers", "2", "+mp_winlimit", "10", "+log", "on"]
     environment:
       PORT: 27015
-      IP: 192.168.1.115
+      IP: 192.168.1.114
       DISCORD_URL: ${DISCORD_URL}
     volumes:
       - "./valve.zip:/xashds/public/valve.zip"
@@ -18,3 +19,33 @@ services:
       - "27016:27016"
       - "27015:27015"
       - "27015:27015/udp"
+  xash-crete:
+    image: yohimik/cs-web-server:latest
+    restart: unless-stopped
+    platform: linux/386
+    command: ["+map", "1v1_crete", "+maxplayers", "2", "+mp_winlimit", "10", "+log", "on"]
+    environment:
+      PORT: 27017
+      IP: 192.168.1.114
+      DISCORD_URL: ${DISCORD_URL}
+    volumes:
+      - "./valve.zip:/xashds/public/valve.zip"
+    ports:
+      - "27018:27016"
+      - "27017:27017"
+      - "27017:27017/udp"
+  xash-marc:
+    image: yohimik/cs-web-server:latest
+    restart: unless-stopped
+    platform: linux/386
+    command: ["+map", "1v1_marc", "+maxplayers", "2", "+mp_winlimit", "10", "+log", "on"]
+    environment:
+      PORT: 27019
+      IP: 192.168.1.114
+      DISCORD_URL: ${DISCORD_URL}
+    volumes:
+      - "./valve.zip:/xashds/public/valve.zip"
+    ports:
+      - "27020:27016"
+      - "27019:27019"
+      - "27019:27019/udp"

@@ -95,6 +95,11 @@ do
                  -F "payload_json={\"content\": \"**Partida Finalitzada!**\n\`\`\`\n$RESUM\n\`\`\`\"}" \
                  "$DISCORD_URL"
             echo "Enviat: $TARGET_LOG"
+            #Sayonara baby
+            NOM_NET=$(echo "$MAPA" | cut -d'_' -f2)
+            echo "Partida acabada al mapa $MAPA. Avisant al controller per tancar xash-$NOM_NET..."
+	    # Cridem al Controller de la màquina host
+            curl -X POST "http://192.168.1.114:5000/detenir-servidor/$NOM_NET"
         fi
     fi
 done
