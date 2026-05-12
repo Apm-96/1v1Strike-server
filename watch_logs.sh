@@ -1,5 +1,5 @@
 #!/bin/bash
-
+IP_HOST="${SERVER_IP:-127.0.0.1}"
 LOG_DIR="/xashds/cstrike/logs"
 DEST="/xashds/saved_logs"
 
@@ -95,11 +95,30 @@ do
                  -F "payload_json={\"content\": \"**Partida Finalitzada!**\n\`\`\`\n$RESUM\n\`\`\`\"}" \
                  "$DISCORD_URL"
             echo "Enviat: $TARGET_LOG"
+	    JSON_DATA=$(cat <<EOF
+	    {
+		 "data": "$DATA",
+	         "mapa": "$MAPA",
+	         "score": "$SCORE_DISPLAY",
+	         "winner": "$WINNER",
+                 "player_ct": "$P_CT_Name",
+                 "kills_ct": $KILLS_CT,
+                 "deaths_ct": $DEATHS_CT,
+                 "player_t": "$P_T_Name",
+                 "kills_t": $KILLS_T,
+                 "deaths_t": $DEATHS_T,
+                 "durada": "$DURADA"
+	    }
+	    EOF
+	    )
+	    echo "Enviat logs a API"
+	    # Envia les dades a la FastAPI (Controller)
+	    curl -X POST -H "Content-Type: application/json" -d "$JSON_DATA" "http://192.168.1.114:5000/registrar-partida"
             #Sayonara baby
             NOM_NET=$(echo "$MAPA" | cut -d'_' -f2)
             echo "Partida acabada al mapa $MAPA. Avisant al controller per tancar xash-$NOM_NET..."
 	    # Cridem al Controller de la màquina host
-            curl -X POST "http://192.168.1.114:5000/detenir-servidor/$NOM_NET"
+            curl -X POST "http://$IP_HOST:5000/detenir-servidor/$NOM_NET"
         fi
     fi
 done
