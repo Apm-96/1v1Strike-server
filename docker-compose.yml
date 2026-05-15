@@ -10,8 +10,8 @@ services:
     platform: linux/386
     command: ["+map", "1v1_queen", "+maxplayers", "2", "+mp_winlimit", "10", "+log", "on"]
     environment:
-      PORT: 27015
-      IP: 192.168.1.114
+      PORT: 1127
+      IP: 209.25.141.24
       DISCORD_URL: ${DISCORD_URL}
     volumes:
       - "./valve.zip:/xashds/public/valve.zip"
@@ -25,8 +25,8 @@ services:
     platform: linux/386
     command: ["+map", "1v1_crete", "+maxplayers", "2", "+mp_winlimit", "10", "+log", "on"]
     environment:
-      PORT: 27017
-      IP: 192.168.1.114
+      PORT: 1129
+      IP: 209.25.141.24
       DISCORD_URL: ${DISCORD_URL}
     volumes:
       - "./valve.zip:/xashds/public/valve.zip"
@@ -40,8 +40,8 @@ services:
     platform: linux/386
     command: ["+map", "1v1_marc", "+maxplayers", "2", "+mp_winlimit", "10", "+log", "on"]
     environment:
-      PORT: 27019
-      IP: 192.168.1.114
+      PORT: 1131
+      IP: 209.25.141.24
       DISCORD_URL: ${DISCORD_URL}
     volumes:
       - "./valve.zip:/xashds/public/valve.zip"

@@ -113,7 +113,9 @@ do
 	    )
 	    echo "Enviat logs a API"
 	    # Envia les dades a la FastAPI (Controller)
-	    curl -X POST -H "Content-Type: application/json" -d "$JSON_DATA" "http://192.168.1.114:5000/registrar-partida"
+	    if [ -z "$P_T_Name" || -z "P_CT_Name"]; then
+	        curl -X POST -H "Content-Type: application/json" -d "$JSON_DATA" "http://$IP_HOST:5000/registrar-partida"
+	    fi
             #Sayonara baby
             NOM_NET=$(echo "$MAPA" | cut -d'_' -f2)
             echo "Partida acabada al mapa $MAPA. Avisant al controller per tancar xash-$NOM_NET..."

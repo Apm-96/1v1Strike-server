@@ -5,11 +5,11 @@ import requests
 import os
 # Commanda: python3 -m uvicorn Controller:app --host 0.0.0.0 --port 5000
 app = FastAPI()
-SERVER_IP = os.getenv('SERVER_IP', '127.0.0.1')
+#SERVER_IP = os.getenv('SERVER_IP', '127.0.0.1')
 SERVIDORS = {
-    "queen": {"service": "xash-queen", "url": "http://{SERVER_IP}:27016"},
-    "crete": {"service": "xash-crete", "url": "http://{SERVER_IP}:27018"},
-    "marc":  {"service": "xash-marc",  "url": "http://{SERVER_IP}:27020"}
+    "queen": {"service": "xash-queen", "url": "http://strike1v1-match.duckdns.org:1128"},
+    "crete": {"service": "xash-crete", "url": "http://strike1v1-match.duckdns.org:1130"},
+    "marc":  {"service": "xash-marc",  "url": "http://strike1v1-match.duckdns.org:1132"}
 }
 
 def esta_corrent(service_name):
@@ -75,7 +75,7 @@ async def detenir_servidor(nom: str):
 async def registrar_partida(data: dict):
     # Reenviem la informació a Django
     # Django sol estar al port 8000
-    django_url = f"http://{SERVER_IP}:8000/save-match" # O la IP que usis
+    django_url = f"http://strike1v1.duckdns.org:1136/save-match" # O la IP que usis
     
     try:
         response = requests.post(django_url, json=data, timeout=5)
