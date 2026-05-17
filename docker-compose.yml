@@ -17,8 +17,8 @@ services:
       - "./valve.zip:/xashds/public/valve.zip"
     ports:
       - "27016:27016"
-      - "27015:27015"
-      - "27015:27015/udp"
+      - "27015:1127"
+      - "27015:1127/udp"
   xash-crete:
     image: yohimik/cs-web-server:latest
     restart: unless-stopped
@@ -32,8 +32,8 @@ services:
       - "./valve.zip:/xashds/public/valve.zip"
     ports:
       - "27018:27016"
-      - "27017:27017"
-      - "27017:27017/udp"
+      - "27017:1129"
+      - "27017:1129/udp"
   xash-marc:
     image: yohimik/cs-web-server:latest
     restart: unless-stopped
@@ -47,5 +47,5 @@ services:
       - "./valve.zip:/xashds/public/valve.zip"
     ports:
       - "27020:27016"
-      - "27019:27019"
-      - "27019:27019/udp"
+      - "27019:1131"
+      - "27019:1131/udp"

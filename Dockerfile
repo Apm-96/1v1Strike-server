@@ -85,13 +85,15 @@ COPY docker/cs-web-server/wasm/package.json docker/cs-web-server/wasm/package.js
 COPY package.json package.json
 COPY pnpm-lock.yaml pnpm-lock.yaml
 COPY pnpm-workspace.yaml pnpm-workspace.yaml
-RUN pnpm install --frozen-lockfile
+#mod
+RUN npm install -g pnpm@9
 COPY docker/cs-web-server/vite.config.ts docker/cs-web-server/vite.config.ts
 COPY docker/cs-web-server/tsconfig.json docker/cs-web-server/tsconfig.json
 COPY docker/cs-web-server/src/client docker/cs-web-server/src/client
 
 WORKDIR /client/docker/cs-web-server
-
+#mod
+RUN pnpm install
 RUN pnpm run build
 
 

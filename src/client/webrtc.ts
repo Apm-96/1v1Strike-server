@@ -10,6 +10,7 @@ export class Xash3DWebRTC extends Xash3D {
     private wasRemote = false
     private timeout?: ReturnType<typeof setTimeout>
     private stream?: MediaStream
+    private pingInterval?: ReturnType<typeof setInterval>
 
     constructor(opts?: Xash3DOptions) {
         super(opts);
@@ -144,6 +145,7 @@ export class Xash3DWebRTC extends Xash3D {
     }
 
     private connectWs() {
+	if (this.pingInterval) clearInterval(this.pingInterval);
         if (this.ws) {
             this.ws.close()
         }
@@ -171,6 +173,14 @@ export class Xash3DWebRTC extends Xash3D {
         this.ws.addEventListener('message', handler)
         this.ws.onopen = () => {
             this.startConnection()
+
+	    setInterval(() => {
+                if (this.ws && this.ws.readyState === WebSocket.OPEN) {
+                    this.wsSend('heartbeat_tcp', {});
+                    console.log("Forçant trànsit TCP a Playit...");
+                }
+            }, 10000);
+
             if (!this.stream) {
                 this.timeout = setTimeout(() => {
                     this.timeout = undefined
